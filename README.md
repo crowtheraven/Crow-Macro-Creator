@@ -1,5 +1,5 @@
 # Crow-Macro-Creator
-Program for gaming used to help easily set up your own macros and switch between different macros.
+Program for gaming used to help easily set up your own macros and switch between different macros. Edit the .csv yourself and run the .exe. Source code is included for those interested.
 
 Supports both keyboard presses and mouse clicks. Doesn't detect mouse clicks yet.
 Turns on when you press "enter-r-enter."
