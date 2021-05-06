@@ -200,7 +200,7 @@ def readMe(commands, csvTitle):
     print('')
     print('top text\n')
     print('Macro running: ', csvTitle)
-    print('/nInputs\tOn Press\tOn Release')
+    print('\nInputs\tOn Press\tOn Release')
     for command in commands:
         print(command.keyIn,'\t',command.onPress,'\t\t',command.onRelease)
     print('\nbottom text')
