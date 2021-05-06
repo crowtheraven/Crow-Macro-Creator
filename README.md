@@ -1,3 +1,7 @@
+# UPDATE COMING SOON
+
+There will be a UI! I'll leave this UI-less version available though for people who are too cool for UIs.
+
 # Crow-Macro-Creator
 Program for gaming used to help easily set up your own macros and switch between different macros. Edit the .csv yourself and run the .exe. Source code is included for those interested.
 
