@@ -31,7 +31,7 @@ def listFiles():
             #currently only supports 10 files
             if(len(goodFiles) < 10): goodFiles.append(file)
             else:
-                print('You have more files than the ammount supported.')
+                print('You have more files than the amount supported.')
                 break
     for i in range(len(goodFiles)): print(i,'\t',goodFiles[i])
     return goodFiles
@@ -115,8 +115,8 @@ def openCsv(openThis):
         reader = csv.reader(file, delimiter = ',')
         for row in reader:
             commands.append(Command(row[0],row[1],row[2]))
-    return commands
-            
+    return commands, openThis
+
 def settingsCsv(openThis):
     hotkeys = []
     with open(openThis, 'r') as file:
@@ -125,21 +125,20 @@ def settingsCsv(openThis):
             hotkeys.append(row[1])
         return hotkeys
 
-#FOR LISTENER
 def on_press(key):
-    global keyPressed, runningScript, closeProgram, commands, files, changeCsvInput
+    global keyPressed, runningScript, closeProgram, commands, csvRunning, files, changeCsvInput
     keyPressed = True
     if(changeCsvInput):
         try:
             num = keyToInt(key)
             print(num)
-            try: commands = openCsv(files[num])
+            try: commands, csvRunning = openCsv(files[num])
             except: 
                 try: print('ERROR: failed to open ', files[num])
                 except: print('ERROR: input out of range')
         except: print('ERROR: not valid input')
         changeCsvInput = False
-        readMe(commands)
+        readMe(commands, csvRunning)
     for i in range(len(hotkeys)):
         if(str(key) == hotkeys[i]):
             if(i == 0):#enable
@@ -183,26 +182,28 @@ def on_release(key):
 
 #this is where the main part of the code starts executing
 def input_thread():
-    global hotkeys, readychecks, commands
+    global hotkeys, readychecks, commands, csvRunning
     #open default csv titled def.csv
-    try: commands = openCsv('def.csv')
+    try: commands, csvRunning = openCsv('def.csv')
     except: print('ERROR: failed to open default def.csv')
-    readMe(commands)
+    readMe(commands, csvRunning)
     hotkeys = settingsCsv('settings.csv')
     readychecks = [hotkeyCheck(['Key.enter',"'r'",'Key.enter']),hotkeyCheck(["'/'","'p'",'Key.space',"'r'","Key.enter"])]
     print('hello. running script = ', runningScript)
-    while (not closeProgram):
+    while(not closeProgram):
         with Listener(on_press = on_press, on_release = on_release) as listener:
             listener.join()
     return False
 
-def readMe(commands):
+#print off commands currently being executed by the code
+def readMe(commands, csvTitle):
     print('')
-    print('top text')
-    print('Inputs\tOn Press\tOn Release')
+    print('top text\n')
+    print('Macro running: ', csvTitle)
+    print('/nInputs\tOn Press\tOn Release')
     for command in commands:
         print(command.keyIn,'\t',command.onPress,'\t\t',command.onRelease)
-    print('bottom text')
+    print('\nbottom text')
     print('')
 
 def findKey(string):
@@ -235,7 +236,7 @@ def keyToInt(key):
     if(str(key) == "'7'"): return 7
     if(str(key) == "'8'"): return 8
     if(str(key) == "'9'"): return 9
-    if(str(key) == "'0'"): return 0   
+    if(str(key) == "'0'"): return 0
 
 #for keywords/hotkeys
 def checkThis(readycheck, key):
