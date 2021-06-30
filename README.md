@@ -2,6 +2,8 @@
 
 There will be a UI! I'll leave this UI-less version available though for people who are too cool for UIs.
 
+UPDATED: https://github.com/crowtheraven/Macro-Manager-With-Gui/blob/main/README.md <---- there's the version with the gui. It's ugly, but it works.
+
 # Crow-Macro-Creator
 Program for gaming used to help easily set up your own macros and switch between different macros. Edit the .csv yourself and run the .exe. Source code is included for those interested.
 
