@@ -1,6 +1,8 @@
 # UPDATE COMING SOON
 
-There will be a UI! I'll leave this UI-less version available though for people who are too cool for UIs.
+Note: RUN AS ADMINISTRATOR. It probably won't work in-game otherwise.
+
+There will be a UI! I'll leave this UI-less version available though for people who are too cool for the UI.
 
 UPDATED: https://github.com/crowtheraven/Macro-Manager-With-Gui <---- there's the version with the gui. It's ugly, but it works.
 
